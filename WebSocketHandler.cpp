@@ -20,7 +20,7 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
   AwsFrameInfo *info = (AwsFrameInfo *)arg;
   if (info->final && info->index == 0 && info->len == len && info->opcode == WS_TEXT) {
     data[len] = '_';
-    uint8_t value = atoi((const char *) &data[2]);
+    int value = atoi((const char *) &data[2]);
     switch (data[0]) {
       case 'S':
         steering = value;
@@ -30,10 +30,12 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
         break;
       case 'L':
         ledMode = value;
+        updateLedMode(ledMode);
         break;
       default:
         break;
     }
+    // Serial.printf("%d\n", value);
   }
 }
 
