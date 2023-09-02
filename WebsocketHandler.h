@@ -5,6 +5,7 @@
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include "lighting.h"
+#include "speakers.h"
 
 extern AsyncWebSocket ws;
 

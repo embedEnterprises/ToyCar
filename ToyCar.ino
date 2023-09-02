@@ -3,6 +3,7 @@
 #include "driving.h"
 #include "steering.h"
 #include "lighting.h"
+#include "speakers.h"
 
 void setup() {
   Serial.begin(115200);
@@ -10,10 +11,11 @@ void setup() {
   setupDriving();
   setupSteering();
   ledInit();
+  setupSpeakers();
 }
 
 void loop() {
   updateDriving(speed);
   updateSteering(steering);
-  // updateLedMode(ledMode);
+  updateSpeakers();
 }

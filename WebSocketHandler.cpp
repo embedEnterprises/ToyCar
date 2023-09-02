@@ -15,6 +15,7 @@ AsyncWebSocket ws("/ws");
 int steering = 0;
 int speed = 0;
 int ledMode = 0;
+uint8_t horn = 0;
 
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
   AwsFrameInfo *info = (AwsFrameInfo *)arg;
@@ -32,6 +33,10 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
         ledMode = value;
         updateLedMode(ledMode);
         break;
+      case 'H':
+        horn = value;
+        if(horn == 1) playHorn();
+        if(horn == 0) stopHorn();
       default:
         break;
     }
