@@ -1,7 +1,9 @@
 #include "driving.h"
 
 const int freq = 5000;
-const int resolution = 8;
+const uint8_t resolution = 8;
+uint8_t speed = 0;
+bool drivingDirection = true;
 
 void setupDriving() {
   //Motor setup
@@ -13,7 +15,24 @@ void setupDriving() {
   ledcAttachPin(in2, 1);
 }
 
-void updateDriving(uint8_t speed) {
-  ledcWrite(0, abs(speed));
-  ledcWrite(1, 0);
+void updateDriving() {
+  if (drivingDirection) {
+    ledcWrite(0, speed);
+    ledcWrite(1, 0);
+  } else {
+    ledcWrite(0, 0);
+    ledcWrite(1, speed);
+  }
+}
+
+void setForwardSpeed(uint8_t val) {
+  speed = val;
+  drivingDirection = true;
+  updateDriving();
+}
+
+void setReverseSpeed(uint8_t val) {
+  speed = val;
+  drivingDirection = false;
+  updateDriving();
 }

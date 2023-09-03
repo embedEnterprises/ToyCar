@@ -1,6 +1,6 @@
 #include "lighting.h"
 
-int ledMode1 = 0;
+uint8_t ledMode1 = 0;
 
 uint8_t arr[7] = {r1 , r2 , r3 , l1 , l2 , l3 , b};
 uint8_t mode4Arr[6] = {r1 , r2 , r3 , l3 , l2 , l1};
@@ -166,12 +166,8 @@ void setupLights() {
   createLedTask();
 }
 
-void updateLedMode(int c) {
+void updateLedMode(uint8_t c) {
   ledMode1 = c;
-  Serial.print("update led  ");
-  Serial.print(ledMode1);
-  Serial.println(c);
-  //  createLedTask();
   vTaskResume(Task1);
   prevMillis = millis();
 }

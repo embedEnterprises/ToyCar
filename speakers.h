@@ -11,5 +11,6 @@ void setupSpeakers();
 void playHorn();
 void stopHorn();
 void updateSpeakers();
+void setHorn(uint8_t value);
 
 #endif

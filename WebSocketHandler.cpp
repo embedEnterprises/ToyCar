@@ -3,7 +3,7 @@
 const char *ssid = "Onkar";
 const char *password = "Onkar@link";
 
-IPAddress local_IP(192, 168, 0, 104);
+IPAddress local_IP(192, 168, 0, 106);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 0, 0);
 IPAddress primaryDNS(8, 8, 8, 8);
@@ -12,35 +12,27 @@ IPAddress secondaryDNS(8, 8, 4, 4);
 AsyncWebServer server(80);
 AsyncWebSocket ws("/ws");
 
+std::map<char, ComponentCallback> componentCallbacks;
+
 int steering = 0;
-int speed = 0;
+// int speed = 0;
 int ledMode = 0;
 uint8_t horn = 0;
+uint8_t value;
+char componentID;
 
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
   AwsFrameInfo *info = (AwsFrameInfo *)arg;
   if (info->final && info->index == 0 && info->len == len && info->opcode == WS_TEXT) {
     data[len] = '_';
-    int value = atoi((const char *) &data[2]);
-    switch (data[0]) {
-      case 'S':
-        steering = value;
-        break;
-      case 'F':
-        speed = value;
-        break;
-      case 'L':
-        ledMode = value;
-        updateLedMode(ledMode);
-        break;
-      case 'H':
-        horn = value;
-        if(horn == 1) playHorn();
-        if(horn == 0) stopHorn();
-      default:
-        break;
+    value = atoi((const char *)&data[2]);
+    componentID = data[0];
+
+    // Check if the component ID exists in the map
+    if (componentCallbacks.find(componentID) != componentCallbacks.end()) {
+      // Call the associated callback function
+      componentCallbacks[componentID](value);
     }
-    // Serial.printf("%d\n", value);
   }
 }
 
@@ -48,7 +40,6 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
              void *arg, uint8_t *data, size_t len) {
   switch (type) {
     case WS_EVT_CONNECT:
-    setupIRSensors();
       Serial.printf("WebSocket client #%u connected from %s\n", client->id(), client->remoteIP().toString().c_str());
       break;
     case WS_EVT_DISCONNECT:
@@ -65,6 +56,10 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
       break;
   }
   vTaskDelay(3);  // You may want to adjust this delay
+}
+
+void addComponentCallback(char componentID, ComponentCallback callback) {
+  componentCallbacks[componentID] = callback;
 }
 
 void initWebSocket() {

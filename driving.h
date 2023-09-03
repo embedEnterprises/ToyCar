@@ -12,6 +12,8 @@
 // extern int speed;
 
 void setupDriving();
-void updateDriving(uint8_t speed);
+void updateDriving();
+void setForwardSpeed(uint8_t val);
+void setReverseSpeed(uint8_t val);
 
 #endif

@@ -13,6 +13,9 @@
 
 void setupSteering();
 
-void updateSteering(int value);
+void updateSteering();
+
+void setClockwiseSteering(uint8_t value);
+void setAnticlockwiseSteering(uint8_t value);
 
 #endif

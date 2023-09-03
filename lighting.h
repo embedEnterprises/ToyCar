@@ -15,6 +15,6 @@
 #define OFF LOW
 
 void setupLights();
-void updateLedMode(int c);
+void updateLedMode(uint8_t c);
 
 #endif

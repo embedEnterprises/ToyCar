@@ -7,7 +7,6 @@ XT_Wav_Class Horn(hornData);
 
 void setupSpeakers() {
   Horn.RepeatForever = true;
-  // playHorn();
 }
 
 void playHorn(){
@@ -18,4 +17,9 @@ void stopHorn () {
 }
 void updateSpeakers(){
   DacAudio.FillBuffer(); 
+}
+
+void setHorn(uint8_t value) {
+  if(value == 1) playHorn();
+  if(value == 0) stopHorn();
 }
