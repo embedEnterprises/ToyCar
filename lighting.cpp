@@ -158,7 +158,7 @@ void createLedTask() {
     1); /* Core where the task should run */
 }
 
-void ledInit() {
+void setupLights() {
   for (int i = 0; i <= 7; i++) {
     pinMode(arr[i] , OUTPUT);
     digitalWrite(arr[i] , OFF);

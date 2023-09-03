@@ -14,7 +14,7 @@
 #define ON HIGH
 #define OFF LOW
 
-void ledInit();
+void setupLights();
 void updateLedMode(int c);
 
 #endif

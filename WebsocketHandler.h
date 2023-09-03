@@ -6,6 +6,7 @@
 #include <ESPAsyncWebServer.h>
 #include "lighting.h"
 #include "speakers.h"
+#include "IRSensor.h"
 
 extern AsyncWebSocket ws;
 

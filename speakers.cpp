@@ -7,7 +7,7 @@ XT_Wav_Class Horn(hornData);
 
 void setupSpeakers() {
   Horn.RepeatForever = true;
-  playHorn();
+  // playHorn();
 }
 
 void playHorn(){

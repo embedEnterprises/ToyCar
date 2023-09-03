@@ -3,7 +3,7 @@
 const char *ssid = "Onkar";
 const char *password = "Onkar@link";
 
-IPAddress local_IP(192, 168, 0, 101);
+IPAddress local_IP(192, 168, 0, 104);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 0, 0);
 IPAddress primaryDNS(8, 8, 8, 8);
@@ -48,6 +48,7 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
              void *arg, uint8_t *data, size_t len) {
   switch (type) {
     case WS_EVT_CONNECT:
+    setupIRSensors();
       Serial.printf("WebSocket client #%u connected from %s\n", client->id(), client->remoteIP().toString().c_str());
       break;
     case WS_EVT_DISCONNECT:

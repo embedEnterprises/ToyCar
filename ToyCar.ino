@@ -4,14 +4,16 @@
 #include "steering.h"
 #include "lighting.h"
 #include "speakers.h"
+#include "IRSensor.h"
 
 void setup() {
   Serial.begin(115200);
   wifiInit();
   setupDriving();
   setupSteering();
-  ledInit();
+  setupLights();
   setupSpeakers();
+  setupIRSensors();
 }
 
 void loop() {
