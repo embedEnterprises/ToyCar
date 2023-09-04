@@ -5,6 +5,8 @@
 #include "lighting.h"
 #include "speakers.h"
 #include "IRSensor.h"
+#include "IMUUnit.h"
+#include "encoder.h"
 
 void setup() {
   Serial.begin(115200);
@@ -14,6 +16,8 @@ void setup() {
   setupLights();
   setupSpeakers();
   setupIRSensors();
+  setupEncoder();
+  // setupIMU();
 
   addComponentCallback('L', updateLedMode);
   addComponentCallback('A', setAnticlockwiseSteering);
