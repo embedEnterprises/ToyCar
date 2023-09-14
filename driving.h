@@ -13,7 +13,7 @@
 
 void setupDriving();
 void updateDriving();
-void setForwardSpeed(uint8_t val);
-void setReverseSpeed(uint8_t val);
+void setForwardSpeed(const char * value);
+void setReverseSpeed(const char * value);
 
 #endif

@@ -19,7 +19,8 @@ void updateSpeakers(){
   DacAudio.FillBuffer(); 
 }
 
-void setHorn(uint8_t value) {
-  if(value == 1) playHorn();
-  if(value == 0) stopHorn();
+void setHorn(const char * value) {
+  uint8_t val = atoi(value);
+  if(val == 1) playHorn();
+  if(val == 0) stopHorn();
 }

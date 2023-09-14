@@ -166,7 +166,8 @@ void setupLights() {
   createLedTask();
 }
 
-void updateLedMode(uint8_t c) {
+void updateLedMode(const char * value) {
+  uint8_t c = atoi(value);
   ledMode1 = c;
   vTaskResume(Task1);
   prevMillis = millis();

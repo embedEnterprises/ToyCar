@@ -25,14 +25,14 @@ void updateDriving() {
   }
 }
 
-void setForwardSpeed(uint8_t val) {
-  speed = val;
+void setForwardSpeed(const char * value) {
+  speed = atoi(value);
   drivingDirection = true;
   updateDriving();
 }
 
-void setReverseSpeed(uint8_t val) {
-  speed = val;
+void setReverseSpeed(const char * value) {
+  speed = atoi(value);
   drivingDirection = false;
   updateDriving();
 }

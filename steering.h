@@ -15,7 +15,7 @@ void setupSteering();
 
 void updateSteering();
 
-void setClockwiseSteering(uint8_t value);
-void setAnticlockwiseSteering(uint8_t value);
+void setClockwiseSteering(const char * value);
+void setAnticlockwiseSteering(const char * value);
 
 #endif

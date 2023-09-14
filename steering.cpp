@@ -18,14 +18,15 @@ void updateSteering() {
   steer.write(steerAngle);
 }
 
-void setClockwiseSteering(uint8_t value) {
-  steerValue = value <= 100 ? value : 100;
+void setClockwiseSteering(const char * value) {
+  uint8_t val = atoi(value);
+  steerValue = val <= 100 ? val : 100;
   steerDirection = true;
   updateSteering();
 }
 
-void setAnticlockwiseSteering(uint8_t value) {
-  steerValue = value;
+void setAnticlockwiseSteering(const char * value) {
+  steerValue = atoi(value);
   steerDirection = false;
   updateSteering();
 }

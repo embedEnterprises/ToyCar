@@ -5,11 +5,12 @@
 #include "lighting.h"
 #include "speakers.h"
 #include "IRSensor.h"
-#include "IMUUnit.h"
+// #include "IMUUnit.h"
 #include "encoder.h"
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("Hello There");
   wifiInit();
   setupDriving();
   setupSteering();
@@ -25,8 +26,10 @@ void setup() {
   addComponentCallback('H', setHorn);
   addComponentCallback('F', setForwardSpeed);
   addComponentCallback('R', setReverseSpeed);
+  addComponentCallback('P', setPassword);
+  addComponentCallback('S', setSSID);
 }
 
 void loop() {
-  updateSpeakers();
+  // updateSpeakers();
 }
